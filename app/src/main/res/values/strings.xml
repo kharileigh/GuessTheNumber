@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">GuessTheNumber</string>
+    <string name="app_name">Guess The Number</string>
     <string name="guess_the_number_between_1_and_100">Guess the number between 1 and 100</string>
     <string name="enter_your_guess">Enter your guess</string>
     <string name="submit">Submit</string>
+    <string name="attempts_left">Attempts left:</string>
+    <string name="restart_game">Restart Game</string>
 </resources>

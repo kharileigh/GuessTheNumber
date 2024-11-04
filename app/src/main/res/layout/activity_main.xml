@@ -4,6 +4,10 @@
 
     <!-- ViewModel variable for data binding -->
     <data>
+
+        <!-- for View -->
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.example.guessthenumber.GuessViewModel" />
@@ -25,15 +29,26 @@
             android:layout_marginBottom="16dp"
             />
 
+        <!-- Remaining Attempts Display -->
+        <TextView
+            android:id="@+id/attemptsDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{"Attempts left: " + viewModel.remainingAttempts}'
+            android:textSize="18sp"
+            android:layout_marginBottom="8dp"
+            />
+
         <!-- User Input -->
         <EditText
             android:id="@+id/numberInput"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:hint="@string/enter_your_guess"
             android:inputType="number"
             android:gravity="center"
             android:layout_marginBottom="16dp"
+            android:enabled="@{!viewModel.hasWon"
             />
 
         <!-- Submit Guess -->
@@ -43,6 +58,7 @@
             android:layout_height="wrap_content"
             android:text="@string/submit"
             android:onClick="@{() -> viewModel.makeGuess(Integer.parseInt(numberInput.text.toString()))}"
+            android:enabled="@{!viewModel.hasWon"
             />
 
         <!-- Display Feedback Messages -->
@@ -53,6 +69,16 @@
             android:text="@{viewModel.feedback}"
             android:textSize="18sp"
             android:layout_marginTop="20dp"
+            />
+
+        <!-- Restart Game -->
+        <Button
+            android:id="@+id/restartButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/restart_game"
+            android:onClick="@{() -> viewModel.resetGame()}"
+            android:visibility="@{viewModel.hasWon || viewModel.remainingAttempts == 0 ? View.VISIBLE : View.GONE}"
             />
 
 
